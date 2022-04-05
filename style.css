@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
 
 :root {
   --dark-violet: hsl(256, 26%, 20%);
@@ -27,14 +27,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
 }
 
 body {
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
 }
-
-nav {
+.content-wrapper {
+  max-width: 1340px;
+  margin: 0 auto;
+  position: relative;
+}
+nav .content-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,12 +61,14 @@ nav ul li:not(:last-child) {
 
 .hero {
   background-color: var(--dark-violet);
+  position: relative;
+  margin-bottom: 200px;
 }
 .hero-text-container {
   color: white;
   text-align: center;
-  padding: 100px 20px;
   position: relative;
+  padding: 100px 50px;
 }
 
 .hero-text-container h1 {
@@ -92,13 +98,34 @@ nav ul li:not(:last-child) {
   border: 2px solid white;
 }
 
-.hero-text-container .top {
+.top-desktop,
+.bottom-desktop {
   position: absolute;
+  display: none;
+}
+
+.top-desktop {
+  left: 0;
+  top: 70%;
+}
+
+.bottom-desktop {
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.top-mobile,
+.bottom-mobile {
+  position: absolute;
+}
+
+.top-mobile {
   left: 0;
   top: 0;
 }
 
-.hero-text-container .bottom {
+.bottom-mobile {
   position: absolute;
   right: 0;
   top: 50%;
@@ -107,7 +134,7 @@ nav ul li:not(:last-child) {
 
 .about {
   text-align: center;
-  margin-top: 100px;
+  padding: 0 20px;
 }
 
 .about h1 {
@@ -116,12 +143,8 @@ nav ul li:not(:last-child) {
   margin-bottom: 50px;
 }
 
-.card-container {
-  padding: 0 20px;
-}
-
 .card {
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .card h3 {
@@ -138,7 +161,7 @@ nav ul li:not(:last-child) {
 }
 
 .about h1::before {
-  content: '';
+  content: "";
   width: 150px;
   height: 1px;
   background-color: var(--dark-violet);
@@ -151,11 +174,10 @@ nav ul li:not(:last-child) {
 .find-out {
   text-align: center;
   background-color: var(--dark-violet);
-  margin: 0 20px;
+  margin: 0 20px 100px;
   padding: 50px 30px;
   color: white;
   position: relative;
-  margin-bottom: 100px;
 }
 
 .find-out img {
@@ -168,20 +190,28 @@ nav ul li:not(:last-child) {
 .find-out h1 {
   font-size: 35px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 footer {
   background-color: var(--very-light-gray);
-  padding: 100px 20px;
+  padding: 100px 20px 10px;
   text-align: center;
   text-transform: uppercase;
   position: relative;
 }
-footer .pattern {
+footer .pattern-mobile {
   position: absolute;
   top: 0;
   left: 0;
 }
+footer .pattern-desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
 footer .social {
   display: flex;
   flex-direction: column;
@@ -216,18 +246,102 @@ footer .col li {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1130px) {
   nav ul {
     display: flex;
   }
   nav .nav-toggle {
     display: none;
   }
-  .hero {
+  .hero .content-wrapper {
     display: flex;
+  }
+  .top-desktop,
+  .bottom-desktop {
+    display: block;
+  }
+
+  .top-mobile,
+  .bottom-mobile {
+    display: none;
+  }
+  .hero {
+    background-color: var(--dark-violet);
+    padding: 100px 50px 130px;
+    margin-bottom: 400px;
   }
 
   .hero-text-container {
     max-width: 50%;
+    text-align: left;
+
+    padding: 0 20px 0 0;
+  }
+
+  .hero h1 {
+    font-size: 70px;
+    padding-top: 50px;
+  }
+  .hero .hero-img img {
+    position: absolute;
+    width: initial;
+    left: 50%;
+    width: 50%;
+  }
+
+  .about {
+    text-align: left;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .about h1::before {
+    left: 0;
+    transform: translateX(0%);
+  }
+  .card img {
+    margin-inline: 0;
+  }
+  .card p {
+    margin: 0;
+  }
+
+  .find-out {
+    margin: 0 auto 100px;
+  }
+
+  footer .social {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  footer .social .logo {
+    margin-bottom: 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  footer .links {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  footer .links * {
+    flex-grow: 1;
+    text-align: left;
+  }
+  footer .pattern-mobile {
+    display: none;
+  }
+  footer .pattern-desktop {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .hero h1 {
+    font-size: 90px;
   }
 }
